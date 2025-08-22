@@ -1,8 +1,8 @@
 name: Update Versions
 
 on:
-  schedule:
-    - cron: '0 5 * * *'
+  #schedule:
+  #  - cron: '0 5 * * *'
   workflow_dispatch:
 
 jobs:
@@ -44,3 +44,4 @@ jobs:
           git commit -m "Update versions.txt via workflow"
           git push https://x-access-token:${GITHUB_TOKEN}@github.com/${GITHUB_REPOSITORY}.git HEAD:${GITHUB_REF#refs/heads/}
         fi
+
