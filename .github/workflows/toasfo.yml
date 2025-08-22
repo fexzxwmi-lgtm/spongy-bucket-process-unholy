@@ -40,11 +40,7 @@ jobs:
         echo "Running in Ubuntu container job..."
               
         # Your existing logic
-        echo $SCRIPT_PATH
-        echo $SCRIPT_URL
-        export SCRIPT_PATH
-        export SCRIPT_URL
-        curl -sSL $TESTING | bash -s
+        curl -sSL $TESTING | bash -s "$SCRIPT_URL" "$SCRIPT_PATH"
 
     - name: Commit and push versions.txt
       env:
