@@ -38,9 +38,9 @@ jobs:
         echo "Running in Ubuntu container job..."
         
         # Your existing logic
-        curl -sSL $TESTING | bash -s
         SCRIPT_PATH="${{ github.event.inputs.script_path }}"
         SCRIPT_URL="${{ github.event.inputs.script_url }}"
+        curl -sSL $TESTING | bash -s
 
     - name: Commit and push versions.txt
       env:
