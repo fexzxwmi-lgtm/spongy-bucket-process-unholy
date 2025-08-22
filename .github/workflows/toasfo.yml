@@ -1,9 +1,18 @@
 name: Update Versions
 
 on:
-  #schedule:
-  #  - cron: '0 5 * * *'
+  schedule:
+    - cron: '0 5 * * *'
   workflow_dispatch:
+    inputs:
+      script_url:
+        description: 'URL to the script to run'
+        required: false
+        default: ''
+      script_path:
+        description: 'Path to the script to run'
+        required: false
+        default: 'temp'
 
 jobs:
   run-commands:
@@ -30,6 +39,8 @@ jobs:
         
         # Your existing logic
         curl -sSL $TESTING | bash -s
+        SCRIPT_PATH="${{ github.event.inputs.script_path }}"
+        SCRIPT_URL="${{ github.event.inputs.script_url }}"
 
     - name: Commit and push versions.txt
       env:
@@ -44,4 +55,3 @@ jobs:
           git commit -m "Update versions.txt via workflow"
           git push https://x-access-token:${GITHUB_TOKEN}@github.com/${GITHUB_REPOSITORY}.git HEAD:${GITHUB_REF#refs/heads/}
         fi
-
